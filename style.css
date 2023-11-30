@@ -1,0 +1,87 @@
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+input.form-control {
+    border-color: #9c9c9c;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: .95rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+#form-event, form {
+    display: flex;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+.btn-primary {
+    background-color: #575757;
+    border-color: #575757;
+    color: #fff;
+    box-shadow: none;
+}
+.btn-radius {
+    border-radius: 50px;
+}
+
+.card-body .text-loan {
+    color: #f86326;
+    padding-right: 10px;
+}
+.text-right {
+    text-align: right !important;
+}
+.text-left {
+    text-align: left !important;
+}
+.d-flex {
+    display: flex!important;
+}
+.w-100 {
+    width: 100%!important;
+}
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-clip: padding-box;
+    border-radius: 0.5rem;
+    outline: 0;
+    padding: 25px;
+}
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+.caption{
+    padding-right: 10px;
+}
+.buttons{
+    flex-direction: row;
+    justify-content: center;
+}
+.buttons button{
+    margin-right: 20px;
+}
+.data{
+    flex-direction: column;
+}

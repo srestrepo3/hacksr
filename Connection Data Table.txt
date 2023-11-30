@@ -1,0 +1,24 @@
+----  Connection: ---------------------------------
+Data Table: LoanRequest
+Atributes:
+
+NDI (string) 
+Nombre (string) 
+Correo (string) 
+Mobile (string) 
+Monto (string) 
+EstadoCredito (string) 
+Cuota (string) 
+PartitionKey (string) *Obligatorio indice del datatable de Azure 
+
+
+-----------------------------------------------------
+
+Token SAS: ?sv=2022-11-02&ss=t&srt=sco&sp=rwdlacu&se=2024-11-20T07:08:27Z&st=2023-11-19T23:08:27Z&spr=https&sig=1%2BuAmErVkdSU2gGeoNyO%2Bgx1twrd8bpSroAb0xk%2BWmY%3D
+
+Table service SAS URL: https://gfintech.table.core.windows.net/LoanRequest?sv=2022-11-02&ss=t&srt=sco&sp=rwdlacu&se=2024-11-20T07:08:27Z&st=2023-11-19T23:08:27Z&spr=https&sig=1%2BuAmErVkdSU2gGeoNyO%2Bgx1twrd8bpSroAb0xk%2BWmY%3D
+
+----------------------------------------------------
+Ejemplo> GET
+
+https://gfintech.table.core.windows.net/LoanRequest?sv=2022-11-02&ss=t&srt=sco&sp=rwdlacu&se=2024-11-20T07:08:27Z&st=2023-11-19T23:08:27Z&spr=https&sig=1%2BuAmErVkdSU2gGeoNyO%2Bgx1twrd8bpSroAb0xk%2BWmY%3D&$filter=NDI%20eq%20'77177909'

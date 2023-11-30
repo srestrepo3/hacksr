@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información Financiera g-hachathon</title>
+    <style>
+        body {
+            background-color: #0074D9; /* Azul */
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ffffff; /* Blanco */
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="text2"],
+        input[type="personas"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #FF4136; /* Rojo */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="PortalDeConocimiento.html">Portal de Conocimiento</a></li>
+                <li><a href="#">g-Hackathon</a></li>
+                <li><a href="Abandonar.html">Abandonar</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <h1>Información Financiera ghackathon</h1>
+        <form id="Financiera">
+            <label for="text1">Fecha de Nacimiento:</label>
+            <input type="text" id="text1" placeholder="Escribe tu fecha de nacimiento">
+            <label for="text1">Dirección de Residencia:</label>
+            <input type="text" id="text2" placeholder="Escribe tu dirección de residencia">
+            <label for="phone">No de personas que dependen de usted:</label>
+            <input type="number" id="text2" placeholder="Escribe No de personas">
+            <!--<label for="phone">Nivel de Estudio:</label>
+            <input type="text" id="text2" placeholder="Escriba su nivel de estudio">-->
+            <label for="text1">Cuantas mascotas tiene?:</label>
+            <input type="number" id="text" placeholder="Escribe número de mascotas">
+        </form>
+
+        <div class="containerLuna">
+                <h1>Pregunta clave para el scoring crediticio</h1>
+                <form id="Financiera">
+                    <label for="text1">¿Cuantas veces ha ido a la luna?:</label>
+                    <input type="number" id="text" placeholder="escriba las veces que ha ido a la luna en los últimos 2 años">
+                    <label for="text1">Describa su experiencia en la luna:</label>
+                    <input type="text" id="text" placeholder="Describa su experiencia en la luna, no relate tanto">
+                </form>
+                <button type="button" onclick="submitAllCreditForm()">Paso 2: Finaliza tu solicitud</button>
+    </div>
+
+    <script>
+        function submitAllCreditForm() {
+            // Redirigir a la página del formulario financiero
+            window.location.href = 'Agradecimientos.html';
+        }
+    </script>
+</body>
+</html>

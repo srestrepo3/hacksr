@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Crédito G-Hackathon</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            background-color: #0074D9; /* Azul */
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ffffff; /* Blanco */
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #FF4136; /* Rojo */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
+</head>
+<body>
+
+
+    <header>
+         <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="PortalDeConocimiento.html">Portal de Conocimiento</a></li>
+                <li><a href="#">g-Hackathon</a></li>
+                <li><a href="#">Abandonar</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <h1>Solicitud de Crédito Emprendedor</h1>
+        <form id="creditForm">
+            <label for="amount">Cantidad de Dinero:</label>
+            <input type="text" id="amount" placeholder="Escribe la cantidad">
+            <label for="term">Plazo (meses):</label>
+            <input type="number" id="term" placeholder="Escribe el plazo">
+        </form>
+
+        <h1>Datos del Solicitante</h1>
+        <form id="applicantForm">
+            <label for="name">Nombre del Solicitante:</label>
+            <input type="text" id="name" name="name" placeholder="Escribe tu nombre">
+            <label for="ndi">Identificación:</label>
+            <input type="text" id="ndi" name="ndi" placeholder="Escribe tu cédula de ciudadanía">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email"  placeholder="Escribe tu correo">
+            <label for="phone">Número Telefónico:</label>
+            <input type="text" id="phone"  name="phone" placeholder="Escribe tu número de contacto">
+            <button type="button" onclick="submitCreditForm()">Paso 1: Envía tu solicitud</button>
+        </form>
+    </div>
+
+    <script>
+        function submitCreditForm() {
+            const amount = document.getElementById('amount').value;
+            const term = document.getElementById('term').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const ndi = document.getElementById('ndi').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Create / Update to Azure DataTable https://gfintech.table.core.windows.net/LoanRequest
+            const dataUpdate={
+                "Nombre": name,
+                "NDI": ndi,
+                "Mobile": phone,
+                "Correo": email,
+                "Monto": amount,
+                "EstadoCredito":"En Estudio",
+                "Cuota":term
+            }
+            const data={
+                "PartitionKey": Date.now().toString(),
+                "RowKey": "",
+                "Timestamp": "",
+                ...dataUpdate
+            }
+
+            //Update
+            axios.get(`https://gfintech.table.core.windows.net/LoanRequest?sv=2022-11-02&ss=t&srt=sco&sp=rwdlacu&se=2024-11-20T07:08:27Z&st=2023-11-19T23:08:27Z&spr=https&sig=1%2BuAmErVkdSU2gGeoNyO%2Bgx1twrd8bpSroAb0xk%2BWmY%3D&$filter=NDI%20eq%20'${ndi}'`).then(function (response) {
+                if(response?.data?.value?.length > 0) {
+                    axios.put(`https://gfintech.table.core.windows.net/LoanRequest(PartitionKey='${response?.data?.value[0].PartitionKey}', RowKey='${response?.data?.value[0].RowKey}')?sv=2022-11-02&ss=t&srt=sco&sp=rwdlacu&se=2024-11-20T07:08:27Z&st=2023-11-19T23:08:27Z&spr=https&sig=1%2BuAmErVkdSU2gGeoNyO%2Bgx1twrd8bpSroAb0xk%2BWmY%3D`, dataUpdate) 
+                    .then(function (response) {
+                        alert("Super, Ya solicitaste un préstamo,  vamos a actualizar el registro, continúa con la información financiera...");
+                        window.location.href = "formulario_financiero.html";
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                } else {
+                    //Create
+                    axios.post('https://gfintech.table.core.windows.net/LoanRequest?sv=2022-11-02&ss=t&srt=sco&sp=rwdlacu&se=2024-11-20T07:08:27Z&st=2023-11-19T23:08:27Z&spr=https&sig=1%2BuAmErVkdSU2gGeoNyO%2Bgx1twrd8bpSroAb0xk%2BWmY%3D', data)
+                    .then(function (response) {
+                        alert("Solitud de préstamo enviado, continúa con la información financiera...");
+                        window.location.href = "formulario_financiero.html";
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    </script>
+</body>
+</html>
